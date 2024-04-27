@@ -1,15 +1,28 @@
 #include "WiFi.h"
 
+#define leftMotorA 16
+#define leftMotorB 17
+#define rightMotorA 22
+#define rightMotorB 23
+
+IPAddress local_IP(192, 168, 100, 123);
+IPAddress gateway(192, 168, 100, 1);
+
+IPAddress subnet(255, 255, 0, 0);
+IPAddress primaryDNS(1, 1, 1, 1);   //optional
+IPAddress secondaryDNS(1, 0, 0, 1); //optional
+
 const char* ssid = "Qbar";
 const char* password = "3Dward2@22";
 
-const char* ssid2 = "wemosssssssss";
+const char* ssid2 = "TEST AP";
 const char* password2 = "";
 
 const int ledPin = LED_BUILTIN;
 
 String header;
 bool motorRunning = 0;
+
 
 const char* html = R""""(
 HTTP/1.1 200 OK
@@ -168,15 +181,21 @@ void setup() {
   Serial.begin(115200);
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, 0);
+  WiFi.softAPConfig(IPAddress(192, 168, 50, 1), IPAddress(192, 168, 50, 1), IPAddress(255, 255, 255, 0));
 
-  Serial.print("Setting AP (Access Point)…");
+
+  //Use this to make bocchi as a Wi-Fi access point, connect your device directly to bocchi
+  Serial.println("Setting AP (Access Point)…");
   WiFi.softAP(ssid2);
-
+  //WiFi.softAPConfig(IPAddress(192, 168, 50, 1), IPAddress(192, 168, 50, 1), IPAddress(255, 255, 255, 0));
   IPAddress IP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(IP);
 
-  // // Connect to Wi-Fi network with SSID and password
+
+
+  // // Use this to connect bocchi to a Wi-Fi network that's available nearby
+  // WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS);
   // Serial.print("Connecting to ");
   // Serial.println(ssid);
   // WiFi.begin(ssid, password);
@@ -215,30 +234,30 @@ void loop() {
 
 
         if (currentLine.endsWith("GET /motor/forward")&& motorRunning == 0) {
-          digitalWrite(ledPin, 1);
+          bothForward();
           motorRunning = 1;
           delay(10);
         }
         if (currentLine.endsWith("GET /motor/reverse")&& motorRunning == 0) {
-          digitalWrite(ledPin, 1);
+          bothReverse();
           motorRunning = 1;
           delay(10);
 
         }
         if (currentLine.endsWith("GET /motor/left")&& motorRunning == 0) {
-          digitalWrite(ledPin, 1);
+          turnLeft();
           motorRunning = 1;
           delay(10);
 
         }
         if (currentLine.endsWith("GET /motor/right") && motorRunning == 0) {
-          digitalWrite(ledPin, 1);
+          turnRight();
           motorRunning = 1;
           delay(10);
           
         }
         if (currentLine.endsWith("GET /motor/off") && motorRunning == 1) {
-          digitalWrite(ledPin, 0);
+          stopMotors();
           motorRunning = 0;
           delay(10);
         }
@@ -246,4 +265,58 @@ void loop() {
     }
     client.stop();
   }
+}
+
+void bothForward(){
+  //Move bocchi forwards
+  analogWrite(leftMotorA, 200);
+  analogWrite(leftMotorB, 0);
+  analogWrite(rightMotorA, 200);
+  analogWrite(rightMotorB, 0);
+
+}
+
+void bothReverse(){
+  //Move bocchi backwards
+  analogWrite(leftMotorA, 0);
+  analogWrite(leftMotorB, 200);
+  analogWrite(rightMotorA, 0);
+  analogWrite(rightMotorB, 200);
+
+}
+
+void turnRight(){
+  //Use this to make bocchi spin in place clockwise
+  // analogWrite(leftMotorA, 32767);
+  // analogWrite(leftMotorB, 0);
+  // analogWrite(rightMotorA, 0);
+  // analogWrite(rightMotorB, 32767);
+
+  //Use this to make bocchi turn right with one motor
+  analogWrite(leftMotorA, 100);
+  analogWrite(leftMotorB, 0);
+  analogWrite(rightMotorA, 0);
+  analogWrite(rightMotorB, 0);
+}
+
+void turnLeft(){
+  //Use this to make bocchi spin in place counter-clockwise
+  // analogWrite(leftMotorA, 0);
+  // analogWrite(leftMotorB, 32767);
+  // analogWrite(rightMotorA, 32767);
+  // analogWrite(rightMotorB, 0);
+
+  //Use this to make bocchi turn left with one motor
+  analogWrite(leftMotorA, 0);
+  analogWrite(leftMotorB, 0);
+  analogWrite(rightMotorA, 100);
+  analogWrite(rightMotorB, 0);
+}
+
+void stopMotors(){
+  //This will make bocchi stand still
+  analogWrite(leftMotorA, 0);
+  analogWrite(leftMotorB, 0);
+  analogWrite(rightMotorA, 0);
+  analogWrite(rightMotorB, 0);
 }
