@@ -1,9 +1,11 @@
-#include "WiFi.h"
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
 
-#define leftMotorA 16
-#define leftMotorB 17
-#define rightMotorA 22
-#define rightMotorB 23
+#define leftMotorA 5
+#define leftMotorB 4
+#define rightMotorA 0
+#define rightMotorB 2
 
 IPAddress local_IP(192, 168, 100, 123);
 IPAddress gateway(192, 168, 100, 1);
@@ -179,8 +181,8 @@ WiFiServer server(80);
 
 void setup() {
   Serial.begin(115200);
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, 0);
+  analogWrite(0, 0);
+  analogWrite(2, 0);
   WiFi.softAPConfig(IPAddress(192, 168, 50, 1), IPAddress(192, 168, 50, 1), IPAddress(255, 255, 255, 0));
 
 
@@ -269,9 +271,9 @@ void loop() {
 
 void bothForward(){
   //Move bocchi forwards
-  analogWrite(leftMotorA, 200);
+  analogWrite(leftMotorA, 500);
   analogWrite(leftMotorB, 0);
-  analogWrite(rightMotorA, 200);
+  analogWrite(rightMotorA, 500);
   analogWrite(rightMotorB, 0);
 
 }
@@ -279,9 +281,9 @@ void bothForward(){
 void bothReverse(){
   //Move bocchi backwards
   analogWrite(leftMotorA, 0);
-  analogWrite(leftMotorB, 200);
+  analogWrite(leftMotorB, 500);
   analogWrite(rightMotorA, 0);
-  analogWrite(rightMotorB, 200);
+  analogWrite(rightMotorB, 500);
 
 }
 
@@ -293,7 +295,7 @@ void turnRight(){
   // analogWrite(rightMotorB, 32767);
 
   //Use this to make bocchi turn right with one motor
-  analogWrite(leftMotorA, 100);
+  analogWrite(leftMotorA, 500);
   analogWrite(leftMotorB, 0);
   analogWrite(rightMotorA, 0);
   analogWrite(rightMotorB, 0);
@@ -309,7 +311,7 @@ void turnLeft(){
   //Use this to make bocchi turn left with one motor
   analogWrite(leftMotorA, 0);
   analogWrite(leftMotorB, 0);
-  analogWrite(rightMotorA, 100);
+  analogWrite(rightMotorA, 500);
   analogWrite(rightMotorB, 0);
 }
 
