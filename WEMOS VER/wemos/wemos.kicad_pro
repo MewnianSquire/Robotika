@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.09999999999999999,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.6
         }
       },
       "diff_pair_dimensions": [
@@ -59,21 +59,7 @@
         }
       ],
       "drc_exclusions": [
-        "courtyards_overlap|70998001|50928001|b2b99875-351c-46ce-a81f-a2f34bc82131|32e715f6-4717-4591-a721-e48a9fad1fc3",
-        "courtyards_overlap|77602001|65660001|ced5e9e4-7f38-41ef-8f98-4a772995f4cb|32e715f6-4717-4591-a721-e48a9fad1fc3",
-        "courtyards_overlap|80650001|63882001|9e17113f-9546-444d-bfb3-a93ea906d1dd|32e715f6-4717-4591-a721-e48a9fad1fc3",
-        "courtyards_overlap|80650001|65660001|9e17113f-9546-444d-bfb3-a93ea906d1dd|ced5e9e4-7f38-41ef-8f98-4a772995f4cb",
-        "courtyards_overlap|86120001|56260001|079713d5-ab3c-46fb-b2d7-2d6f021f902f|32e715f6-4717-4591-a721-e48a9fad1fc3",
-        "courtyards_overlap|90810001|87250001|9d24a616-bae6-42b4-ad6e-1fea9f11c917|103967e0-d4c2-48d2-ae64-7a4cea74a4cf",
-        "courtyards_overlap|94609999|88039325|9d24a616-bae6-42b4-ad6e-1fea9f11c917|1b2d3c1e-7c1e-428f-b6c3-7cfa3b0b991b",
-        "lib_footprint_issues|64516000|44196000|c09dd534-175c-4c59-97d7-ad458ca92134|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|70358000|76454000|7230730f-a94b-40df-9759-d1e4befdd4c7|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|73660000|76708000|96a70c8b-3d16-438c-a0a1-d4bfd602941d|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|86868000|69850000|4f7384b6-f487-4298-9fac-0e0f49fc5f83|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|86868000|73406000|f1640a5b-db7c-4787-9214-7135064f0fbe|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_issues|96774000|45974000|9d88e79d-e594-4427-a794-14e6be89ecc2|00000000-0000-0000-0000-000000000000",
-        "silk_over_copper|85793572|70574819|212ff90c-8f91-40e8-84ed-c795f664338f|00000000-0000-0000-0000-000000000000",
-        "silk_over_copper|88017999|73350000|84a9f0d2-268d-489c-82ef-c5523265be5c|00000000-0000-0000-0000-000000000000"
+        "courtyards_overlap|86120001|56260001|079713d5-ab3c-46fb-b2d7-2d6f021f902f|32e715f6-4717-4591-a721-e48a9fad1fc3"
       ],
       "meta": {
         "version": 2
