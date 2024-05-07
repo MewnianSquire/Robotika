@@ -241,9 +241,9 @@ void loop() {
 
 void bothForward(){
   //Move RC forwards
-  analogWrite(leftMotorA, 500);
+  analogWrite(leftMotorA, 1023);
   analogWrite(leftMotorB, 0);
-  analogWrite(rightMotorA, 500);
+  analogWrite(rightMotorA, 1023);
   analogWrite(rightMotorB, 0);
 
 }
@@ -251,21 +251,21 @@ void bothForward(){
 void bothReverse(){
   //Move RC backwards
   analogWrite(leftMotorA, 0);
-  analogWrite(leftMotorB, 500);
+  analogWrite(leftMotorB, 1023);
   analogWrite(rightMotorA, 0);
-  analogWrite(rightMotorB, 500);
+  analogWrite(rightMotorB, 1023);
 
 }
 
 void turnRight(){
   //Use this to make RC spin in place clockwise
-  // analogWrite(leftMotorA, 500);
+  // analogWrite(leftMotorA, 1023);
   // analogWrite(leftMotorB, 0);
   // analogWrite(rightMotorA, 0);
-  // analogWrite(rightMotorB, 500);
+  // analogWrite(rightMotorB, 1023);
 
   //Use this to make RC turn right with one motor
-  analogWrite(leftMotorA, 500);
+  analogWrite(leftMotorA, 1023);
   analogWrite(leftMotorB, 0);
   analogWrite(rightMotorA, 0);
   analogWrite(rightMotorB, 0);
@@ -274,14 +274,14 @@ void turnRight(){
 void turnLeft(){
   //Use this to make RC spin in place counter-clockwise
   // analogWrite(leftMotorA, 0);
-  // analogWrite(leftMotorB, 500);
-  // analogWrite(rightMotorA, 500);
+  // analogWrite(leftMotorB, 1023);
+  // analogWrite(rightMotorA, 1023);
   // analogWrite(rightMotorB, 0);
 
   //Use this to make RC turn left with one motor
   analogWrite(leftMotorA, 0);
   analogWrite(leftMotorB, 0);
-  analogWrite(rightMotorA, 500);
+  analogWrite(rightMotorA, 1023);
   analogWrite(rightMotorB, 0);
 }
 
